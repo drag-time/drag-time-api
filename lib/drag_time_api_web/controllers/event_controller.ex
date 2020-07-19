@@ -20,17 +20,21 @@ defmodule DragTimeApiWeb.EventController do
       conn
       |> put_status(:created)
       |> put_resp_header("location", Routes.event_path(conn, :show, event))
-      |> render("show.json", event: event)
+      |> render("create.json", event: event)
     end
   end
 
   def show(conn, %{"id" => id}) do
     event = Events.get_event!(id)
+    |> Repo.preload(:artists)
+    |> Repo.preload(:locations)
     render(conn, "show.json", event: event)
   end
 
   def update(conn, %{"id" => id, "event" => event_params}) do
     event = Events.get_event!(id)
+    |> Repo.preload(:artists)
+    |> Repo.preload(:locations)
 
     with {:ok, %Event{} = event} <- Events.update_event(event, event_params) do
       render(conn, "show.json", event: event)
@@ -39,6 +43,8 @@ defmodule DragTimeApiWeb.EventController do
 
   def delete(conn, %{"id" => id}) do
     event = Events.get_event!(id)
+    |> Repo.preload(:artists)
+    |> Repo.preload(:locations)
 
     with {:ok, %Event{}} <- Events.delete_event(event) do
       send_resp(conn, :no_content, "")
