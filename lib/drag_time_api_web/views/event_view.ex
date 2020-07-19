@@ -20,9 +20,8 @@ defmodule DragTimeApiWeb.EventView do
       start_time: event.start_time,
       end_time: event.end_time,
       cost: event.cost,
-      artists: render_one(DragTimeApi.Artists.get_artist!(1), DragTimeApiWeb.ArtistView, "artist.json"),
-      #location: render_one(event.location_id, DragTimeApiWeb.LocationView, "location.json")}
-      location: (if event.location_id, do: render_one(DragTimeApi.Locations.get_location!(event.location_id), DragTimeApiWeb.LocationView, "location.json"), else: event.location_id )}
+      artists: render_many(event.artists, DragTimeApiWeb.ArtistView, "artist.json"),
+      location: render_one(event.locations, DragTimeApiWeb.LocationView, "location.json")}
   end
 
 end
