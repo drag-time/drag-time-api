@@ -43,3 +43,22 @@ Repo.insert! %Artist{
  image: "https://www.example.com/1.jpg",
  description: "lazy dog jumped over the fence"
 }
+
+Repo.insert! %Artist{
+ name: "Katya",
+ image: "https://www.example.com/2.jpg",
+ description: "lazy dog jumped over the fence"
+}
+
+alias DragTimeApi.Repo
+alias DragTimeApi.EventsArtists
+
+Repo.insert! %EventsArtists{
+  event_id: 1,
+  artist_id: 1
+}
+
+Repo.insert! %EventsArtists{
+  event_id: 1,
+  artist_id: 2
+}
