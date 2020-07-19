@@ -12,7 +12,9 @@ defmodule DragTimeApi.Events.Event do
     field :labels, {:array, :string}
     field :start_time, :time
     field :location_id, :id
-    has_one :locations, Events.Location
+    # has_one :locations, Events.Location
+    # has_many :artists, Events.Artist
+    many_to_many :artists, Event.Artist, join_through: "events_artists"
 
     timestamps()
   end
