@@ -1,13 +1,17 @@
 defmodule DragTimeApiWeb.EventController do
   use DragTimeApiWeb, :controller
 
+  alias DragTimeApi.Repo
   alias DragTimeApi.Events
   alias DragTimeApi.Events.Event
 
   action_fallback DragTimeApiWeb.FallbackController
 
   def index(conn, _params) do
-    events = Events.list_events()
+    events = Repo.all(Event)
+      |> Repo.preload(:artists)
+      |> Repo.preload(:locations)
+
     render(conn, "index.json", events: events)
   end
 
