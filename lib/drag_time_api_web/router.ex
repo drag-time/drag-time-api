@@ -7,6 +7,8 @@ defmodule DragTimeApiWeb.Router do
 
   scope "/api", DragTimeApiWeb do
     pipe_through :api
+    resources "/locations", LocationController, except: [:new, :edit]
+    resources "/events", EventController, except: [:new, :edit]
   end
 
   # Enables LiveDashboard only for development
@@ -21,7 +23,6 @@ defmodule DragTimeApiWeb.Router do
 
     scope "/" do
       pipe_through [:fetch_session, :protect_from_forgery]
-      live_dashboard "/dashboard", metrics: DragTimeApiWeb.Telemetry
     end
   end
 end
