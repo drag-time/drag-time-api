@@ -34,3 +34,12 @@ Repo.insert! %Event{
  cost: 10.00,
  location_id: 1
 }
+
+alias DragTimeApi.Repo
+alias DragTimeApi.Artists.Artist
+
+Repo.insert! %Artist{
+ name: "Landon Cider",
+ image: "https://www.example.com/1.jpg",
+ description: "lazy dog jumped over the fence"
+}
