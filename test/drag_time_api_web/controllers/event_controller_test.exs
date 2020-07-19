@@ -5,21 +5,23 @@ defmodule DragTimeApiWeb.EventControllerTest do
   alias DragTimeApi.Events.Event
 
   @create_attrs %{
+    title: "some title",
     cost: 120.5,
     date: ~D[2010-04-17],
     description: "some description",
     end_time: ~T[14:00:00],
     image: "some image",
-    labels: "some labels",
+    labels: ["some labels"],
     start_time: ~T[14:00:00]
   }
   @update_attrs %{
+    title: "some title 2",
     cost: 456.7,
     date: ~D[2011-05-18],
     description: "some updated description",
     end_time: ~T[15:01:01],
     image: "some updated image",
-    labels: "some updated labels",
+    labels: ["some updated labels"],
     start_time: ~T[15:01:01]
   }
   @invalid_attrs %{cost: nil, date: nil, description: nil, end_time: nil, image: nil, labels: nil, start_time: nil}
@@ -43,7 +45,7 @@ defmodule DragTimeApiWeb.EventControllerTest do
   describe "create event" do
     test "renders event when data is valid", %{conn: conn} do
       conn = post(conn, Routes.event_path(conn, :create), event: @create_attrs)
-      assert %{"id" => id} = json_response(conn, 201)["data"]
+      id = json_response(conn, 201)["id"]
 
       conn = get(conn, Routes.event_path(conn, :show, id))
 
@@ -54,7 +56,7 @@ defmodule DragTimeApiWeb.EventControllerTest do
                "description" => "some description",
                "end_time" => "14:00:00",
                "image" => "some image",
-               "labels" => "some labels",
+               "labels" => ["some labels"],
                "start_time" => "14:00:00"
              } = json_response(conn, 200)["data"]
     end
@@ -81,7 +83,7 @@ defmodule DragTimeApiWeb.EventControllerTest do
                "description" => "some updated description",
                "end_time" => "15:01:01",
                "image" => "some updated image",
-               "labels" => "some updated labels",
+               "labels" => ["some updated labels"],
                "start_time" => "15:01:01"
              } = json_response(conn, 200)["data"]
     end

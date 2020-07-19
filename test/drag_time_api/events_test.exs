@@ -6,9 +6,9 @@ defmodule DragTimeApi.EventsTest do
   describe "events" do
     alias DragTimeApi.Events.Event
 
-    @valid_attrs %{cost: 120.5, date: ~D[2010-04-17], description: "some description", end_time: ~T[14:00:00], image: "some image", labels: "some labels", start_time: ~T[14:00:00]}
-    @update_attrs %{cost: 456.7, date: ~D[2011-05-18], description: "some updated description", end_time: ~T[15:01:01], image: "some updated image", labels: "some updated labels", start_time: ~T[15:01:01]}
-    @invalid_attrs %{cost: nil, date: nil, description: nil, end_time: nil, image: nil, labels: nil, start_time: nil}
+    @valid_attrs %{title: "some title", cost: 120.5, date: ~D[2010-04-17], description: "some description", end_time: ~T[14:00:00], image: "some image", labels: ["21+", "Cover Charge", "Drag King"], start_time: ~T[14:00:00]}
+    @update_attrs %{title: "some title 2", cost: 456.7, date: ~D[2011-05-18], description: "some updated description", end_time: ~T[15:01:01], image: "some updated image", labels: ["18+", "Cover Charge", "Drag King"], start_time: ~T[15:01:01]}
+    @invalid_attrs %{title: nil, cost: nil, date: nil, description: nil, end_time: nil, image: nil, labels: nil, start_time: nil}
 
     def event_fixture(attrs \\ %{}) do
       {:ok, event} =
@@ -31,12 +31,13 @@ defmodule DragTimeApi.EventsTest do
 
     test "create_event/1 with valid data creates a event" do
       assert {:ok, %Event{} = event} = Events.create_event(@valid_attrs)
+      assert event.title == "some title"
       assert event.cost == 120.5
       assert event.date == ~D[2010-04-17]
       assert event.description == "some description"
       assert event.end_time == ~T[14:00:00]
       assert event.image == "some image"
-      assert event.labels == "some labels"
+      assert event.labels == ["21+", "Cover Charge", "Drag King"]
       assert event.start_time == ~T[14:00:00]
     end
 
@@ -47,12 +48,13 @@ defmodule DragTimeApi.EventsTest do
     test "update_event/2 with valid data updates the event" do
       event = event_fixture()
       assert {:ok, %Event{} = event} = Events.update_event(event, @update_attrs)
+      assert event.title == "some title 2"
       assert event.cost == 456.7
       assert event.date == ~D[2011-05-18]
       assert event.description == "some updated description"
       assert event.end_time == ~T[15:01:01]
       assert event.image == "some updated image"
-      assert event.labels == "some updated labels"
+      assert event.labels == ["18+", "Cover Charge", "Drag King"]
       assert event.start_time == ~T[15:01:01]
     end
 
