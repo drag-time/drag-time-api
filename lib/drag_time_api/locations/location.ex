@@ -8,6 +8,7 @@ defmodule DragTimeApi.Locations.Location do
     field :city, :string
     field :state, :string
     field :zip, :string
+    has_many :events, DragTimeApi.Events.Event
 
     timestamps()
   end

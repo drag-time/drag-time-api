@@ -11,10 +11,8 @@ defmodule DragTimeApi.Events.Event do
     field :image, :string
     field :labels, {:array, :string}
     field :start_time, :time
-    field :location_id, :id
-    # has_one :locations, Events.Location
-    # has_many :artists, Events.Artist
-    many_to_many :artists, Event.Artist, join_through: "events_artists"
+    belongs_to :locations, DragTimeApi.Locations.Location, foreign_key: :location_id
+    many_to_many(:artists, DragTimeApi.Artists.Artist, join_through: DragTimeApi.EventsArtists)
 
     timestamps()
   end
