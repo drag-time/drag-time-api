@@ -3,8 +3,9 @@ defmodule DragTimeApi.Repo.Migrations.CreateEvents do
 
   def change do
     create table(:events) do
-      add :description, :string
-      add :labels, :string
+      add :title, :string
+      add :description, :text
+      add :labels, {:array, :string}
       add :image, :string
       add :date, :date
       add :start_time, :time
