@@ -10,6 +10,18 @@ defmodule DragTimeApiWeb.EventView do
     %{data: render_one(event, EventView, "event.json")}
   end
 
+  def render("create.json", %{event: event}) do
+    %{type: "event",
+      id: event.id,
+      description: event.description,
+      labels: event.labels,
+      image: event.image,
+      date: event.date,
+      start_time: event.start_time,
+      end_time: event.end_time,
+      cost: event.cost}
+  end
+
   def render("event.json", %{event: event}) do
     %{type: "event",
       id: event.id,
