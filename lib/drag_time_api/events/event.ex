@@ -22,5 +22,6 @@ defmodule DragTimeApi.Events.Event do
     event
     |> cast(attrs, [:title, :description, :labels, :image, :date, :start_time, :end_time, :cost])
     |> validate_required([:title, :description, :labels, :image, :date, :start_time, :end_time, :cost])
+    |> unique_constraint(:id)
   end
 end
