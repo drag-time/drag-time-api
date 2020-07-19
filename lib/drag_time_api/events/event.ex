@@ -3,14 +3,16 @@ defmodule DragTimeApi.Events.Event do
   import Ecto.Changeset
 
   schema "events" do
+    field :title, :string
     field :cost, :float
     field :date, :date
     field :description, :string
     field :end_time, :time
     field :image, :string
-    field :labels, :string
+    field :labels, {:array, :string}
     field :start_time, :time
     field :location_id, :id
+    has_one :locations, Events.Location
 
     timestamps()
   end
@@ -18,7 +20,7 @@ defmodule DragTimeApi.Events.Event do
   @doc false
   def changeset(event, attrs) do
     event
-    |> cast(attrs, [:description, :labels, :image, :date, :start_time, :end_time, :cost])
-    |> validate_required([:description, :labels, :image, :date, :start_time, :end_time, :cost])
+    |> cast(attrs, [:title, :description, :labels, :image, :date, :start_time, :end_time, :cost])
+    |> validate_required([:title, :description, :labels, :image, :date, :start_time, :end_time, :cost])
   end
 end
