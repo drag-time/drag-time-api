@@ -13,6 +13,7 @@ defmodule DragTimeApiWeb.EventView do
   def render("create.json", %{event: event}) do
     %{type: "event",
       id: event.id,
+      title: event.title,
       description: event.description,
       labels: event.labels,
       image: event.image,
@@ -25,6 +26,7 @@ defmodule DragTimeApiWeb.EventView do
   def render("event.json", %{event: event}) do
     %{type: "event",
       id: event.id,
+      title: event.title,
       description: event.description,
       labels: event.labels,
       image: event.image,
