@@ -2,6 +2,7 @@ defmodule DragTimeApiWeb.Router do
   use DragTimeApiWeb, :router
 
   pipeline :api do
+    plug CORSPlug, origin: "*"
     plug :accepts, ["json"]
   end
 
