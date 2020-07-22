@@ -13,6 +13,9 @@ defmodule DragTimeApiWeb.LocationView do
   def render("location.json", %{location: location}) do
     %{id: location.id,
       name: location.name,
-      address: location.address}
+      address: location.address,
+      city: location.city,
+      state: location.state,
+      zip: location.zip}
   end
 end
