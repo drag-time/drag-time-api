@@ -61,14 +61,14 @@ Repo.insert! %Event{
 
 Repo.insert! %Event{
  title: "Neon Rainbows 90’s Country Night: Dolly Would with DJ Boi Orbison & The Gay Ole Opry Drag Show",
- description: "Monsters and beauty queens unite for a one-of-a-kind drag experience. Along with Denver's hottest drag entertainers, we give you the glamour, filth, and horror that is the underground drag scene.",
+ description: "90's even with special drag performances",
  labels: ["Musical", "Tribute"],
  image: "http://cheerupcharlies.com/wp-content/uploads/2020/01/82851571_3017189774995177_6442076964017668096_n.jpg",
  date: ~D[2020-07-31],
  start_time: ~T[20:00:00],
  end_time: ~T[23:00:00],
  cost: 0.00,
- location_id: 5
+ location_id: 4
 }
 
 Repo.insert! %Event{
@@ -80,7 +80,7 @@ Repo.insert! %Event{
  start_time: ~T[21:00:00],
  end_time: ~T[23:59:59],
  cost: 5.00,
- location_id: 2
+ location_id: 3
 }
 
 Repo.insert! %Event{
@@ -92,7 +92,7 @@ Repo.insert! %Event{
  start_time: ~T[18:00:00],
  end_time: ~T[21:00:00],
  cost: 0.00,
- location_id: 3
+ location_id: 2
 }
 
 Repo.insert! %Event{
@@ -149,12 +149,12 @@ Repo.insert! %EventsArtists{
 
 Repo.insert! %EventsArtists{
   event_id: 2,
-  artist_id: 3
+  artist_id: 2
 }
 
 Repo.insert! %EventsArtists{
   event_id: 2,
-  artist_id: 4
+  artist_id: 3
 }
 
 Repo.insert! %EventsArtists{
