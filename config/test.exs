@@ -20,6 +20,3 @@ config :drag_time_api, DragTimeApiWeb.Endpoint,
 
 # Print only warnings and errors during test
 config :logger, level: :warn
-
-# Bcrypt configuration 
-config :bcrypt_elixir, :log_rounds, 4
