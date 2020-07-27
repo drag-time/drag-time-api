@@ -11,7 +11,7 @@ defmodule DragTimeApiWeb.Router do
     resources "/locations", LocationController, except: [:new, :edit]
     resources "/events", EventController, except: [:new, :edit]
     resources "/artists", ArtistController, except: [:new, :edit]
-    resources "/access", AccessController, execpt: [:new, :edit]
+    resources "/access", AccessController, only: [:index, :create]
   end
 
   # Enables LiveDashboard only for development

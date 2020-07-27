@@ -46,7 +46,7 @@ defmodule DragTimeApi.MixProject do
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
       {:excoveralls, "~> 0.10", only: :test},
-      {:cors_plug, "~> 1.5"}
+      {:cors_plug, "~> 1.5"},
     ]
   end
 
