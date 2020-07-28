@@ -20,8 +20,8 @@ defmodule DragTimeApi.Events.Event do
   @doc false
   def changeset(event, attrs) do
     event
-    |> cast(attrs, [:title, :description, :labels, :image, :date, :start_time, :end_time, :cost])
-    |> validate_required([:title, :description, :labels, :image, :date, :start_time, :end_time, :cost])
+    |> cast(attrs, [:title, :description, :labels, :image, :date, :start_time, :end_time, :cost, :location_id])
+    |> validate_required([:title, :description, :labels, :image, :date, :start_time, :end_time, :cost, :location_id])
     |> unique_constraint(:id)
   end
 end
