@@ -2,12 +2,13 @@ defmodule DragTimeApiWeb.Router do
   use DragTimeApiWeb, :router
 
   pipeline :api do
-    plug CORSPlug, origin: "*"
+    plug CORSPlug, origin: "*", methods: ["GET", "HEAD", "POST", "OPTIONS", "PUT", "PATCH", "DELETE"], headers: []
     plug :accepts, ["json"]
   end
 
   scope "/api", DragTimeApiWeb do
     pipe_through :api
+    options "/events", EventController, :options
     resources "/locations", LocationController, except: [:new, :edit]
     resources "/events", EventController, except: [:new, :edit]
     resources "/artists", ArtistController, except: [:new, :edit]
