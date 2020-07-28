@@ -20,7 +20,8 @@ defmodule DragTimeApiWeb.EventView do
       date: event.date,
       start_time: event.start_time,
       end_time: event.end_time,
-      cost: event.cost}
+      cost: event.cost,
+      location_id: event.location_id}
   end
 
   def render("event.json", %{event: event}) do

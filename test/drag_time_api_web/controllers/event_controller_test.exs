@@ -3,6 +3,10 @@ defmodule DragTimeApiWeb.EventControllerTest do
 
   alias DragTimeApi.Events
   alias DragTimeApi.Events.Event
+  alias DragTimeApi.Locations.Location
+  alias DragTimeApi.Locations
+
+  @location_attrs %{ address: "some address", name: "some name", city: "some city", state: "some state", zip: "some zip"}
 
   @create_attrs %{
     title: "some title",
@@ -23,11 +27,34 @@ defmodule DragTimeApiWeb.EventControllerTest do
     image: "some updated image",
     labels: ["some updated labels"],
     start_time: ~T[15:01:01]
-  }
+    }
   @invalid_attrs %{cost: nil, date: nil, description: nil, end_time: nil, image: nil, labels: nil, start_time: nil}
 
+  def location_fixture(attrs \\ %{}) do
+    {:ok, location} =
+      attrs
+      |> Enum.into(@location_attrs)
+      |> Locations.create_location()
+
+    location
+  end
+
   def fixture(:event) do
-    {:ok, event} = Events.create_event(@create_attrs)
+    location = location_fixture(@location_attrs)
+    attrs = Map.put(@create_attrs, :location_id, location.id)
+
+    {:ok, event} = Events.create_event(attrs)
+    event
+  end
+
+  def event_fixture(attrs \\ %{}) do
+    location = location_fixture(@location_attrs)
+    {:ok, event} =
+      attrs
+      |> Map.put(:location_id, location.id)
+      |> Enum.into(@create_attrs)
+      |> Events.create_event()
+
     event
   end
 
@@ -44,7 +71,10 @@ defmodule DragTimeApiWeb.EventControllerTest do
 
   describe "create event" do
     test "renders event when data is valid", %{conn: conn} do
-      conn = post(conn, Routes.event_path(conn, :create), event: @create_attrs)
+      location = location_fixture(@location_attrs)
+      attrs = Map.put(@create_attrs, :location_id, location.id)
+
+      conn = post(conn, Routes.event_path(conn, :create), event: attrs)
       id = json_response(conn, 201)["id"]
 
       conn = get(conn, Routes.event_path(conn, :show, id))
