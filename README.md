@@ -14,6 +14,27 @@ Checkout out our app in production:
 
 ![Database Schema](https://user-images.githubusercontent.com/50503353/88851344-e16e4580-d1a9-11ea-9ace-c43305f5fc46.png)
 
+## Contributors
+
+[Travis Borgsmiller](https://github.com/TravisBorgsmiller)
+
+[Collin Kallery](https://github.com/collinkallery)
+
+[Daniel Atkinson](https://github.com/danielbldr)
+
+[Javier Aguilar](https://github.com/javier-aguilar)
+
+[Kyle Williams](https://github.com/KCWill)
+
+## To get Drag-Time-API working locally:
+
+  * Install dependencies with `mix deps.get`
+  * Create and migrate your database with `mix ecto.setup`
+
+## To start Phoenix endpoint:
+
+  * run `mix phx.server`
+  * visit [`localhost:4000`](http://localhost:4000) from your browser
 
 
 ## Endpoints
